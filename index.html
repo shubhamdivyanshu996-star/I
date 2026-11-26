@@ -1,0 +1,611 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Apology for Anika 💗</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: Georgia, serif;
+  color: white;
+  background: linear-gradient(145deg, #100d2c, #30204d, #54294e);
+  text-align: center;
+}
+
+.screen {
+  min-height: 100vh;
+  width: 100%;
+  padding: 35px 18px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.screen.active {
+  display: flex;
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+  font-size: clamp(28px, 7vw, 42px);
+  margin-bottom: 18px;
+  color: #ffd4e8;
+  text-shadow: 0 0 18px #ff83c5;
+}
+
+h2 {
+  color: #ffc5df;
+  margin-bottom: 18px;
+  font-size: 25px;
+}
+
+p {
+  max-width: 650px;
+  font-size: 17px;
+  line-height: 1.8;
+  color: #fff0f7;
+  margin: 12px auto;
+}
+
+.small {
+  font-size: 14px;
+  color: #e6c8dc;
+}
+
+button {
+  border: none;
+  border-radius: 30px;
+  padding: 13px 27px;
+  margin: 12px 7px;
+  background: linear-gradient(135deg, #ff8cbd, #d85d9c);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 5px 20px #ff70b766;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button:hover {
+  filter: brightness(1.1);
+}
+
+.secondary {
+  background: linear-gradient(135deg, #8876c8, #66549e);
+  box-shadow: 0 5px 20px #8876c855;
+}
+
+.card {
+  width: min(92%, 650px);
+  padding: 25px 22px;
+  border: 1px solid #ffc5e566;
+  border-radius: 24px;
+  background: #ffffff12;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 30px #ff8cbd22;
+}
+
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  color: #fff5c9;
+  animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.2; transform: scale(0.7); }
+  to { opacity: 1; transform: scale(1.2); }
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+/* Opening bow and arrow */
+
+.archery {
+  font-size: 65px;
+  margin: 25px;
+  animation: float 2s infinite ease-in-out;
+}
+
+@keyframes float {
+  50% { transform: translateY(-12px); }
+}
+
+.arrow {
+  font-size: 55px;
+  display: inline-block;
+  animation: shoot 2s ease-in-out infinite;
+}
+
+@keyframes shoot {
+  0%, 35% { transform: translateX(-30px); opacity: 0.5; }
+  70%, 100% { transform: translateX(30px); opacity: 1; }
+}
+
+/* Magical heart tree */
+
+.tree {
+  width: 300px;
+  height: 330px;
+  position: relative;
+  margin: 5px auto 15px;
+  animation: treeGrow 2s ease forwards;
+  transform-origin: bottom center;
+}
+
+@keyframes treeGrow {
+  from { transform: scale(0.2); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.tree-glow {
+  position: absolute;
+  width: 270px;
+  height: 230px;
+  top: 0;
+  left: 15px;
+  border-radius: 50%;
+  background: #ff75c733;
+  filter: blur(35px);
+  animation: glowPulse 3s infinite alternate;
+}
+
+@keyframes glowPulse {
+  from { opacity: 0.4; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1.15); }
+}
+
+.heart-canopy {
+  position: absolute;
+  inset: 5px 0 auto;
+  width: 300px;
+  height: 230px;
+}
+
+.heart-leaf {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  animation: heartFloat 3s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 7px #ff9acb);
+}
+
+@keyframes heartFloat {
+  from { transform: translate(-50%, -50%) rotate(-8deg) scale(0.9); }
+  to { transform: translate(-50%, -50%) rotate(8deg) scale(1.12); }
+}
+
+.tree-trunk {
+  position: absolute;
+  width: 25px;
+  height: 115px;
+  left: 138px;
+  bottom: 0;
+  border-radius: 50% 50% 12px 12px;
+  background: linear-gradient(90deg, #683b43, #bd806b, #75434a);
+  box-shadow: 0 0 15px #ffb3c455;
+}
+
+.branch {
+  position: absolute;
+  height: 13px;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #75434a, #d39a83);
+  transform-origin: left center;
+}
+
+.branch-left {
+  width: 100px;
+  left: 10px;
+  top: 25px;
+  transform: rotate(-40deg);
+}
+
+.branch-right {
+  width: 105px;
+  left: 10px;
+  top: 55px;
+  transform: rotate(-145deg);
+}
+
+.branch-top {
+  width: 75px;
+  left: 10px;
+  top: 8px;
+  transform: rotate(-75deg);
+}
+
+.tree-ground {
+  position: absolute;
+  bottom: -20px;
+  width: 100%;
+  font-size: 20px;
+}
+
+.falling-heart {
+  position: fixed;
+  top: -30px;
+  z-index: 5;
+  pointer-events: none;
+  animation: fall 6s linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.choice {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+#answer {
+  margin-top: 20px;
+  color: #ffe0ee;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+/* Mobile layout */
+
+@media(max-width: 400px) {
+  .tree {
+    transform: scale(0.88);
+    margin-top: -12px;
+    margin-bottom: -15px;
+  }
+
+  p { font-size: 16px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars" id="stars"></div>
+
+<audio id="music" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- SCREEN 1 -->
+<section class="screen active" id="screen1">
+  <div class="content">
+    <h1>For Anika 💗</h1>
+    <div class="archery">🏹</div>
+    <h2>A little something from me...</h2>
+    <p>
+      I know a simple website cannot undo a mistake,
+      but I wanted to put my thoughts somewhere
+      instead of leaving everything unsaid.
+    </p>
+    <p class="small">Tap below whenever you're ready.</p>
+    <button onclick="startJourney()">Open this little surprise 💌</button>
+  </div>
+</section>
+
+<!-- SCREEN 2 -->
+<section class="screen" id="screen2">
+  <div class="content">
+    <h1>One arrow, one heart...</h1>
+    <div class="archery">🏹 <span class="arrow">➶</span> 💗</div>
+    <p>
+      This little arrow carries something I should have
+      said much earlier.
+    </p>
+    <button onclick="showScreen(3)">Let it fly ✨</button>
+  </div>
+</section>
+
+<!-- SCREEN 3 -->
+<section class="screen" id="screen3">
+  <div class="content">
+    <h1>Something grew here 🌸</h1>
+
+    <div class="tree" id="tree">
+      <div class="tree-glow"></div>
+      <div class="heart-canopy" id="crown"></div>
+      <div class="tree-trunk">
+        <div class="branch branch-left"></div>
+        <div class="branch branch-right"></div>
+        <div class="branch branch-top"></div>
+      </div>
+      <div class="tree-ground">✨ 🌷 ✨</div>
+    </div>
+
+    <div class="card">
+      <h2>A tree made of hearts</h2>
+      <p>
+        Every heart represents a kind thought,
+        a memory, and a little reminder that
+        people deserve to be valued.
+      </p>
+      <p>
+        And I should have remembered your special day.
+        I'm genuinely sorry, Anika.
+      </p>
+    </div>
+
+    <button onclick="showScreen(4)">Continue 💗</button>
+  </div>
+</section>
+
+<!-- SCREEN 4 -->
+<section class="screen" id="screen4">
+  <div class="content">
+    <h1>I'm really sorry, Anika.</h1>
+    <div class="card">
+      <p>
+        I forgot YOUR birthday, and I know that must have
+        hurt you. I won't pretend it was a small thing
+        or try to make excuses for it.
+      </p>
+      <p>
+        Sach bolu toh mujhe samajh hi nahi aa raha ki
+        ab aage kya bolun. Maine apni galti accept ki hai,
+        aur mujhe pata hai ki sirf sorry bol dene se
+        sab kuch theek nahi ho jaata.
+      </p>
+      <p>
+        I should have made the effort to remember.
+        You deserved that consideration, and I failed
+        to show it.
+      </p>
+    </div>
+    <button onclick="showScreen(5)">Next 🌷</button>
+  </div>
+</section>
+
+<!-- SCREEN 5 -->
+<section class="screen" id="screen5">
+  <div class="content">
+    <h1>No excuses. Just honesty.</h1>
+    <div class="card">
+      <p>
+        I could tell you that I was occupied or that
+        things slipped from my mind, but those things
+        don't erase the fact that I forgot.
+      </p>
+      <p>
+        People make time and effort for the things
+        that matter. I understand why my mistake
+        might have made you question that.
+      </p>
+      <p>
+        I'm not asking you to ignore your feelings
+        or pretend that nothing happened.
+        You have every right to feel disappointed.
+      </p>
+    </div>
+    <button onclick="showScreen(6)">One more thing...</button>
+  </div>
+</section>
+
+<!-- SCREEN 6 -->
+<section class="screen" id="screen6">
+  <div class="content">
+    <h1>Please understand this...</h1>
+    <div class="card">
+      <p>
+        I am sorry for making you feel forgotten
+        on a day that was important to you.
+      </p>
+      <p>
+        I wish I could go back and do things differently,
+        but I can't. All I can do is take responsibility
+        and learn from this.
+      </p>
+      <p>
+        I don't expect an instant reply, forgiveness,
+        or a return to how things were.
+        Your feelings and your boundaries matter.
+      </p>
+      <p>
+        You don't owe me a response just because
+        I made this.
+      </p>
+    </div>
+    <button onclick="showScreen(7)">Read the last page 💌</button>
+  </div>
+</section>
+
+<!-- SCREEN 7 -->
+<section class="screen" id="screen7">
+  <div class="content">
+    <h1>Before this ends...</h1>
+    <div class="card">
+      <p>
+        Anika, I'm genuinely sorry.
+        I hope your birthday was filled with happiness,
+        kindness, and all the little things you love.
+      </p>
+      <p>
+        Even though I failed to remember it on time,
+        I still wish you a wonderful year ahead.
+      </p>
+      <p>
+        Thank you for the moments we've shared.
+        I'll respect whatever space you need.
+      </p>
+      <p>
+        Take care of yourself. You deserve good things.
+      </p>
+      <h2>With a sincere apology, 💗</h2>
+    </div>
+    <p class="small">
+      This is not a request for an immediate answer.
+      It's simply an apology.
+    </p>
+    <button onclick="showScreen(8)">The final page ✨</button>
+  </div>
+</section>
+
+<!-- SCREEN 8 -->
+<section class="screen" id="screen8">
+  <div class="content">
+    <h1>Your feelings matter. 🌷</h1>
+    <div class="card">
+      <p>
+        You don't have to choose anything here.
+        You can simply close this page.
+        Whatever you feel is valid.
+      </p>
+      <p>
+        If you ever feel comfortable, you can let me know.
+        If you need space, I'll respect that too.
+      </p>
+    </div>
+
+    <div class="choice">
+      <button onclick="choose('forgive')">💗 I forgive you</button>
+      <button class="secondary" onclick="choose('space')">🌷 I need space</button>
+    </div>
+
+    <div id="answer"></div>
+  </div>
+</section>
+
+<script>
+const music = document.getElementById("music");
+
+function showScreen(number) {
+  document.querySelectorAll(".screen").forEach(screen => {
+    screen.classList.remove("active");
+  });
+
+  document.getElementById("screen" + number).classList.add("active");
+
+  if (number === 3) {
+    makeTree();
+  }
+
+  window.scrollTo(0, 0);
+}
+
+function startJourney() {
+  music.play().catch(() => {
+    console.log("Music playback needs user permission.");
+  });
+  showScreen(2);
+}
+
+/* Create stars */
+
+const stars = document.getElementById("stars");
+
+for (let i = 0; i < 45; i++) {
+  const star = document.createElement("span");
+  star.className = "star";
+  star.textContent = "✦";
+  star.style.left = Math.random() * 100 + "%";
+  star.style.top = Math.random() * 100 + "%";
+  star.style.fontSize = (Math.random() * 10 + 6) + "px";
+  star.style.animationDelay = Math.random() * 3 + "s";
+  stars.appendChild(star);
+}
+
+/* Heart tree */
+
+function makeTree() {
+  const crown = document.getElementById("crown");
+
+  if (crown.dataset.created) return;
+  crown.dataset.created = "yes";
+
+  const hearts = [
+    [50, 12, 27], [35, 15, 24], [65, 15, 24],
+    [22, 30, 25], [42, 28, 30], [58, 28, 30],
+    [78, 30, 25], [15, 48, 23], [32, 45, 28],
+    [50, 45, 32], [68, 45, 28], [85, 48, 23],
+    [25, 62, 25], [42, 62, 29], [58, 62, 29],
+    [75, 62, 25], [50, 76, 23]
+  ];
+
+  const colors = [
+    "#ff6fae", "#ff9acb", "#ffcfdf",
+    "#e78bff", "#ff477e", "#ffc1d9",
+    "#ff85b8"
+  ];
+
+  hearts.forEach((position, index) => {
+    const heart = document.createElement("span");
+    heart.className = "heart-leaf";
+    heart.textContent = "♥";
+    heart.style.left = position[0] + "%";
+    heart.style.top = position[1] + "%";
+    heart.style.fontSize = position[2] + "px";
+    heart.style.color = colors[index % colors.length];
+    heart.style.animationDelay = (index * 0.13) + "s";
+    crown.appendChild(heart);
+  });
+}
+
+/* Falling hearts */
+
+function fallingHearts() {
+  const heart = document.createElement("div");
+  heart.className = "falling-heart";
+  heart.textContent = ["💗", "💕", "💖", "🌸"][Math.floor(Math.random() * 4)];
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (15 + Math.random() * 15) + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 6000);
+}
+
+setInterval(fallingHearts, 900);
+
+/* Final choices */
+
+function choose(choice) {
+  const answer = document.getElementById("answer");
+
+  if (choice === "forgive") {
+    answer.innerHTML =
+      "Thank you for sharing how you feel. I won't take your forgiveness for granted. 💗";
+  } else {
+    answer.innerHTML =
+      "I understand. Take all the space you need. I will respect your decision. 🌷";
+  }
+}
+</script>
+
+</body>
+</html>
